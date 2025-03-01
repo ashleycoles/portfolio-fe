@@ -1,55 +1,43 @@
 import { API_BASE_URL, APP_MODE } from '$env/static/private';
 import { HttpStatus } from '$lib/types/HttpStatus.js';
+import { login } from '$lib/utils/api.js';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
     login: async ({ request, cookies }) => {
         const formData = await request.formData();
-        const email = formData.get('email');
-        const password = formData.get('password');
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
 
-        const fetchOptons = {
-            method: 'POST',
-            body: JSON.stringify({email, password}),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+        const loginResult = await login(email, password);
+
+        console.log(loginResult)
+
+        if (loginResult.errors) {
+            const errors = loginResult.errors;
+
+            if (errors.loginError) {
+                return fail(HttpStatus.Unauthorized, {loginError: loginResult.errors.loginError})
             }
-        }
 
-        const loginResponse = await fetch(`${API_BASE_URL}/login`, fetchOptons);
+            const validationErrors: {emailError?: string, passwordError?: string} = {}
 
-        type FormErrors = {
-            emailError?: string;
-            passwordError?: string;
-            loginError?: string;
-        };
-
-        const validationErrors: FormErrors = {};
-
-        if (loginResponse.status === HttpStatus.Unauthorized) {
-            validationErrors.loginError = 'Incorrect Email or Password'
-            return fail(HttpStatus.Unauthorized, validationErrors)
-        }
-
-        if (loginResponse.status === HttpStatus.UnprocessableEntity) {
-            const data = await loginResponse.json();
-        
-            if (data.errors?.email) {
+            if (errors.emailError) {
                 validationErrors.emailError = 'Email Address is Invalid'
             }
 
-            if (data.errors?.password) {
+            if (errors.passwordError) {
                 validationErrors.passwordError = 'Password is required'
-            }
 
+            }
             return fail(HttpStatus.UnprocessableEntity, validationErrors)
         }
 
-        const data = await loginResponse.json();
-        const token = data.token;
+        if (!loginResult.token) {
+            return fail(HttpStatus.InternalServerError)
+        }
 
-        cookies.set('token', token, {
+        cookies.set('token', loginResult.token, {
             path: '/',
             httpOnly: true,
             secure: APP_MODE === 'production',
