@@ -1,5 +1,5 @@
 <script lang="ts">
-    import H3 from "./text/H3.svelte";
+    import H3 from './text/H3.svelte';
 
     let { id, title, slug, excerpt, featuredImage } = $props();
 </script>

@@ -9,8 +9,8 @@
     </label>
 
     {#if form?.emailError}
-		<p>{form.emailError}</p>
-	{/if}
+        <p>{form.emailError}</p>
+    {/if}
 
     <label>
         Password
@@ -18,12 +18,12 @@
     </label>
 
     {#if form?.passwordError}
-		<p>{form.passwordError}</p>
-	{/if}
+        <p>{form.passwordError}</p>
+    {/if}
 
     <input type="submit" value="Login" />
 
     {#if form?.loginError}
-		<p>{form.loginError}</p>
-	{/if}
+        <p>{form.loginError}</p>
+    {/if}
 </form>

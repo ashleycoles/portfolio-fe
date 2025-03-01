@@ -6,12 +6,12 @@ export const load = async ({ cookies }) => {
     const token = cookies.get('token');
 
     if (!token) {
-        error(HttpStatus.NotFound)
+        error(HttpStatus.NotFound);
     }
 
-    const isTokenValid = await validateToken(token)
+    const isTokenValid = await validateToken(token);
 
     if (!isTokenValid) {
-        error(HttpStatus.NotFound)
+        error(HttpStatus.NotFound);
     }
-}
+};
