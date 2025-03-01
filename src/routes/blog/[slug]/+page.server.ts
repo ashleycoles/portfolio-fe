@@ -1,9 +1,9 @@
-import { BASE_URL } from "$lib/settings/api";
+import { API_BASE_URL } from "$env/static/private";
 import type { Post } from "$lib/types/post.js";
 import { error } from "@sveltejs/kit";
 
 export async function load({ params }) {
-    const res = await fetch(`${BASE_URL}/posts/${params.slug}`);
+    const res = await fetch(`${API_BASE_URL}/posts/${params.slug}`);
 
     if (res.status === 404) {
         error(404);
