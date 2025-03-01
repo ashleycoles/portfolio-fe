@@ -1,8 +1,7 @@
 import { HttpStatus } from '$lib/types/HttpStatus.js';
-import type { CreatePostData } from '$lib/types/post.js';
 import { validateToken } from '$lib/utils/api/auth';
 import { createPost } from '$lib/utils/api/posts.js';
-import { error, fail, redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
     const token = cookies.get('token');
@@ -36,5 +35,5 @@ export const actions = {
 
             return fail(HttpStatus.UnprocessableEntity, createPostResult.errors);
         }
-    },
+    }
 };

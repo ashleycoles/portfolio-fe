@@ -6,8 +6,8 @@ export const validateToken = async (token: string): Promise<boolean> => {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
+            Authorization: `Bearer ${token}`
+        }
     });
 
     if (!res.ok) {
@@ -34,15 +34,15 @@ export const login = async (email: string, password: string): Promise<LoginResul
         body: JSON.stringify({ email, password }),
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
+            'Content-Type': 'application/json'
+        }
     });
 
     if (res.status === HttpStatus.Unauthorized) {
         return {
             errors: {
-                loginError: 'Incorrect Email or Password',
-            },
+                loginError: 'Incorrect Email or Password'
+            }
         };
     }
 

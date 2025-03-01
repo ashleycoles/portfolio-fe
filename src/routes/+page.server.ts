@@ -4,6 +4,6 @@ export async function load() {
     const posts = await getPosts();
 
     return {
-        posts,
+        posts
     };
 }

@@ -11,7 +11,7 @@
         <H2>Blog</H2>
     </Container>
     <ul>
-        {#each posts as post}
+        {#each posts as post (post.id)}
             <PostExcerpt {...post} />
         {/each}
     </ul>

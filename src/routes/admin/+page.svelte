@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Nav from '$lib/components/admin/Nav.svelte';
     import H1 from '$lib/components/text/H1.svelte';
 </script>
 

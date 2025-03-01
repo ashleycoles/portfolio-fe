@@ -9,6 +9,6 @@ export async function load({ params }) {
     }
 
     return {
-        post: post.data,
+        post: post.data
     };
 }

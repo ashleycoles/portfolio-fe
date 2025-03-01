@@ -18,7 +18,7 @@ export const getPost = async (slug: string): Promise<GetPostResult> => {
 
     if (!res.ok) {
         return {
-            found: false,
+            found: false
         };
     }
 
@@ -26,7 +26,7 @@ export const getPost = async (slug: string): Promise<GetPostResult> => {
 
     return {
         found: true,
-        data: data.data,
+        data: data.data
     };
 };
 
@@ -50,16 +50,16 @@ export const createPost = async (formData: FormData, token: string): Promise<Cre
         body: formData,
         headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
+            Authorization: `Bearer ${token}`
+        }
     });
 
     if (res.status === HttpStatus.Unauthorized) {
         return {
             success: false,
             errors: {
-                authError: 'Not Authenticated',
-            },
+                authError: 'Not Authenticated'
+            }
         };
     }
 
@@ -90,7 +90,7 @@ export const createPost = async (formData: FormData, token: string): Promise<Cre
 
         return {
             success: false,
-            errors,
+            errors
         };
     }
     return await res.json();

@@ -1,4 +1,4 @@
-import { API_BASE_URL, APP_MODE } from '$env/static/private';
+import { APP_MODE } from '$env/static/private';
 import { HttpStatus } from '$lib/types/HttpStatus.js';
 import { login } from '$lib/utils/api/auth.js';
 import { fail, redirect } from '@sveltejs/kit';
@@ -16,7 +16,7 @@ export const actions = {
 
             if (errors.loginError) {
                 return fail(HttpStatus.Unauthorized, {
-                    loginError: loginResult.errors.loginError,
+                    loginError: loginResult.errors.loginError
                 });
             }
 
@@ -43,9 +43,9 @@ export const actions = {
             path: '/',
             httpOnly: true,
             secure: APP_MODE === 'production',
-            maxAge: 60 * 60 * 24,
+            maxAge: 60 * 60 * 24
         });
 
         redirect(HttpStatus.Found, '/admin');
-    },
+    }
 };
