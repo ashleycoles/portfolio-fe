@@ -1,5 +1,5 @@
 import { HttpStatus } from '$lib/types/HttpStatus.js';
-import { validateToken } from '$lib/utils/api.js';
+import { validateToken } from '$lib/utils/api/auth.js';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {

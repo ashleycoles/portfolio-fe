@@ -1,6 +1,6 @@
 import { API_BASE_URL, APP_MODE } from '$env/static/private';
 import { HttpStatus } from '$lib/types/HttpStatus.js';
-import { login } from '$lib/utils/api.js';
+import { login } from '$lib/utils/api/auth.js';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
