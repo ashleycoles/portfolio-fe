@@ -1,11 +1,12 @@
 import { API_BASE_URL } from '$env/static/private';
+import { HttpStatus } from '$lib/types/HttpStatus.js';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
     const token = cookies.get('token');
 
     if (!token) {
-        error(404)
+        error(HttpStatus.NotFound)
     }
 
     const res = await fetch(`${API_BASE_URL}/validate`, {
@@ -17,6 +18,6 @@ export const load = async ({ cookies }) => {
     })
 
     if (!res.ok) {
-        error(404)
+        error(HttpStatus.NotFound)
     }
 }

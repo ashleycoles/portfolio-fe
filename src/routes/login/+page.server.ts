@@ -1,4 +1,5 @@
 import { API_BASE_URL, APP_MODE } from '$env/static/private';
+import { HttpStatus } from '$lib/types/HttpStatus.js';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
@@ -16,7 +17,7 @@ export const actions = {
             }
         }
 
-        const res = await fetch(`${API_BASE_URL}/login`, fetchOptons);
+        const loginResponse = await fetch(`${API_BASE_URL}/login`, fetchOptons);
 
         type FormErrors = {
             emailError?: string;
@@ -26,13 +27,13 @@ export const actions = {
 
         const validationErrors: FormErrors = {};
 
-        if (res.status === 401) {
+        if (loginResponse.status === HttpStatus.Unauthorized) {
             validationErrors.loginError = 'Incorrect Email or Password'
-            return fail(401, validationErrors)
+            return fail(HttpStatus.Unauthorized, validationErrors)
         }
 
-        if (res.status === 422) {
-            const data = await res.json();
+        if (loginResponse.status === HttpStatus.UnprocessableEntity) {
+            const data = await loginResponse.json();
         
             if (data.errors?.email) {
                 validationErrors.emailError = 'Email Address is Invalid'
@@ -42,10 +43,10 @@ export const actions = {
                 validationErrors.passwordError = 'Password is required'
             }
 
-            return fail(422, validationErrors)
+            return fail(HttpStatus.UnprocessableEntity, validationErrors)
         }
 
-        const data = await res.json();
+        const data = await loginResponse.json();
         const token = data.token;
 
         cookies.set('token', token, {
@@ -55,6 +56,6 @@ export const actions = {
             maxAge: 60 * 60 * 24
         });
 
-        redirect(302, '/admin')
+        redirect(HttpStatus.Found, '/admin')
     }
 }
