@@ -1,5 +1,5 @@
-import { API_BASE_URL } from '$env/static/private';
 import { HttpStatus } from '$lib/types/HttpStatus.js';
+import { validateToken } from '$lib/utils/api.js';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
@@ -9,15 +9,9 @@ export const load = async ({ cookies }) => {
         error(HttpStatus.NotFound)
     }
 
-    const res = await fetch(`${API_BASE_URL}/validate`, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-        }
-    })
+    const isTokenValid = await validateToken(token)
 
-    if (!res.ok) {
+    if (!isTokenValid) {
         error(HttpStatus.NotFound)
     }
 }
