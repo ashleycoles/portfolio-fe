@@ -7,6 +7,4 @@
     <title>Admin</title>
 </svelte:head>
 
-<Nav />
-
 <H1>Admin Panel</H1>
