@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '$env/static/private';
 import { HttpStatus } from '$lib/types/HttpStatus';
-import type { CreatePostData, Post, PostExcerpt } from '$lib/types/post';
+import type { Post, PostExcerpt } from '$lib/types/post';
 
 export const getPosts = async (): Promise<PostExcerpt[]> => {
     const res = await fetch(`${API_BASE_URL}/posts`);
@@ -44,10 +44,7 @@ interface CreatePostResult {
     errors?: CreatePostErrors;
 }
 
-export const createPost = async (
-    formData: FormData,
-    token: string
-): Promise<CreatePostResult> => {
+export const createPost = async (formData: FormData, token: string): Promise<CreatePostResult> => {
     const res = await fetch(`${API_BASE_URL}/posts`, {
         method: 'POST',
         body: formData,

@@ -1,1 +1,11 @@
 @import 'tailwindcss';
+
+@theme {
+    --color-highlight: var(--color-indigo-700);
+    --color-highlight-dark: var(--color-amber-400);
+
+    --color-background: var(--color-white);
+    --color-background-alt: var(--color-gray-200);
+    --color-background-dark: var(--color-neutral-800);
+    --color-background-alt-dark: var(--color-neutral-900);
+}

@@ -34,10 +34,7 @@ export const actions = {
                 return error(HttpStatus.Unauthorized);
             }
 
-            return fail(
-                HttpStatus.UnprocessableEntity,
-                createPostResult.errors
-            );
+            return fail(HttpStatus.UnprocessableEntity, createPostResult.errors);
         }
     },
 };

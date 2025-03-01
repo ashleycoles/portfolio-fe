@@ -4,6 +4,7 @@ export interface PostExcerpt {
     slug: string;
     featuredImage: string;
     excerpt: string;
+    created_at: string;
 }
 
 export interface Post extends PostExcerpt {

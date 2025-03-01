@@ -28,10 +28,7 @@ interface LoginResult {
     errors?: LoginErrors;
 }
 
-export const login = async (
-    email: string,
-    password: string
-): Promise<LoginResult> => {
+export const login = async (email: string, password: string): Promise<LoginResult> => {
     const res = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
         body: JSON.stringify({ email, password }),
