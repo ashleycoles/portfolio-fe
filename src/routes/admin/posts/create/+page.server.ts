@@ -18,7 +18,6 @@ export const load = async ({ cookies }) => {
     }
 };
 
-
 export const actions = {
     create: async ({ request, cookies }) => {
         const formData = await request.formData();
@@ -35,7 +34,10 @@ export const actions = {
                 return error(HttpStatus.Unauthorized);
             }
 
-            return fail(HttpStatus.UnprocessableEntity, createPostResult.errors);
+            return fail(
+                HttpStatus.UnprocessableEntity,
+                createPostResult.errors
+            );
         }
-    }
+    },
 };

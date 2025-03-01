@@ -44,22 +44,18 @@ interface CreatePostResult {
     errors?: CreatePostErrors;
 }
 
-
-
-export const createPost = async (formData: FormData, token: string): Promise<CreatePostResult> => {
-    for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-    const createRequest = new Request(`${API_BASE_URL}/posts`, {
+export const createPost = async (
+    formData: FormData,
+    token: string
+): Promise<CreatePostResult> => {
+    const res = await fetch(`${API_BASE_URL}/posts`, {
         method: 'POST',
         body: formData,
         headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
         },
     });
-    
-    const res = await fetch(createRequest);
 
     if (res.status === HttpStatus.Unauthorized) {
         return {
@@ -97,8 +93,8 @@ export const createPost = async (formData: FormData, token: string): Promise<Cre
 
         return {
             success: false,
-            errors
-        }
+            errors,
+        };
     }
-    return await res.json()
-}
+    return await res.json();
+};

@@ -1,13 +1,12 @@
 <script lang="ts">
-    import ImageInput from "$lib/components/form/ImageInput.svelte";
-    import Label from "$lib/components/form/Label.svelte";
-    import Submit from "$lib/components/form/Submit.svelte";
-    import TextArea from "$lib/components/form/TextArea.svelte";
-    import TextInput from "$lib/components/form/TextInput.svelte";
-    import H1 from "$lib/components/text/H1.svelte";
+    import ImageInput from '$lib/components/form/ImageInput.svelte';
+    import Label from '$lib/components/form/Label.svelte';
+    import Submit from '$lib/components/form/Submit.svelte';
+    import TextArea from '$lib/components/form/TextArea.svelte';
+    import TextInput from '$lib/components/form/TextInput.svelte';
+    import H1 from '$lib/components/text/H1.svelte';
 
     let { form } = $props();
-
 </script>
 
 <svelte:head>
@@ -19,7 +18,7 @@
 <form method="POST" action="?/create" enctype="multipart/form-data">
     <Label>
         <div>Title</div>
-        <TextInput name='title' required={true} />
+        <TextInput name="title" required={true} />
     </Label>
 
     {#if form?.titleError}
@@ -28,7 +27,7 @@
 
     <Label>
         <div>Slug</div>
-        <TextInput name='slug' required={true} />
+        <TextInput name="slug" required={true} />
     </Label>
 
     {#if form?.slugError}
@@ -37,7 +36,7 @@
 
     <Label>
         <div>Excerpt</div>
-        <TextArea name='excerpt' required={true} />
+        <TextArea name="excerpt" required={true} />
     </Label>
 
     {#if form?.excerptError}
@@ -46,7 +45,7 @@
 
     <Label>
         <div>Content</div>
-        <TextArea name='content' required={true} />
+        <TextArea name="content" required={true} />
     </Label>
 
     {#if form?.contentError}
@@ -55,12 +54,12 @@
 
     <Label>
         <div>Featured Image</div>
-        <ImageInput name='featuredImage' required={true} />
+        <ImageInput name="featuredImage" />
     </Label>
 
     {#if form?.featuredImageError}
         <p>{form.featuredImageError}</p>
     {/if}
 
-    <Submit value='Save' />
+    <Submit value="Save" />
 </form>
