@@ -1,8 +1,8 @@
-import { API_BASE_URL } from '$env/static/private';
-import { fail } from '@sveltejs/kit';
+import { API_BASE_URL, APP_MODE } from '$env/static/private';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-    login: async ({ request }) => {
+    login: async ({ request, cookies }) => {
         const formData = await request.formData();
         const email = formData.get('email');
         const password = formData.get('password');
@@ -46,7 +46,15 @@ export const actions = {
         }
 
         const data = await res.json();
-        console.log(data)
         const token = data.token;
+
+        cookies.set('token', token, {
+            path: '/',
+            httpOnly: true,
+            secure: APP_MODE === 'production',
+            maxAge: 60 * 60 * 24
+        });
+
+        redirect(302, '/admin')
     }
 }
