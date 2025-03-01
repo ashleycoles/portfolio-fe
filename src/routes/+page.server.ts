@@ -8,6 +8,6 @@ export async function load() {
     const posts = data.data;
 
     return {
-        posts
-    }
+        posts,
+    };
 }

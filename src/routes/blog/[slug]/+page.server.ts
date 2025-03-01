@@ -1,6 +1,6 @@
-import { API_BASE_URL } from "$env/static/private";
-import type { Post } from "$lib/types/post.js";
-import { error } from "@sveltejs/kit";
+import { API_BASE_URL } from '$env/static/private';
+import type { Post } from '$lib/types/post.js';
+import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
     const res = await fetch(`${API_BASE_URL}/posts/${params.slug}`);
@@ -14,6 +14,6 @@ export async function load({ params }) {
     const post = data.data;
 
     return {
-        post
-    }
+        post,
+    };
 }
