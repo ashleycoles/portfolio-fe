@@ -5,5 +5,10 @@
     let { post } = data;
 </script>
 
+<svelte:head>
+    <title>Ashley Coles - { post.title }</title>
+</svelte:head>
+
 <H1>{post.title}</H1>
+<img src={ post.featuredImage } alt="" />
 <p>{post.content}</p>
