@@ -1,4 +1,5 @@
 export enum HttpStatus {
+    Created = 201,
     Found = 302,
     Unauthorized = 401,
     NotFound = 404,

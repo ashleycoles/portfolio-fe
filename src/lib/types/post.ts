@@ -9,3 +9,11 @@ export interface PostExcerpt {
 export interface Post extends PostExcerpt {
     content: string;
 }
+
+export interface CreatePostData {
+    title: string;
+    slug: string;
+    excerpt: string;
+    content: string;
+    featuredImage: File;
+}

@@ -1,14 +1,41 @@
-export const actions = {
-    create: async ({ request }) => {
-        const formData = await request.formData();
-        
-        const title = formData.get('title') as string;
-        const slug = formData.get('slug') as string;
-        const excerpt = formData.get('excerpt') as string;
-        const content = formData.get('content') as string;
-        const featuredImage = formData.get('featuredImage');
+import { HttpStatus } from '$lib/types/HttpStatus.js';
+import type { CreatePostData } from '$lib/types/post.js';
+import { validateToken } from '$lib/utils/api/auth';
+import { createPost } from '$lib/utils/api/posts.js';
+import { error, fail, redirect } from '@sveltejs/kit';
 
-        console.log({title, slug, excerpt, content, featuredImage})
+export const load = async ({ cookies }) => {
+    const token = cookies.get('token');
 
+    if (!token) {
+        error(HttpStatus.NotFound);
     }
-}
+
+    const isTokenValid = await validateToken(token);
+
+    if (!isTokenValid) {
+        error(HttpStatus.NotFound);
+    }
+};
+
+
+export const actions = {
+    create: async ({ request, cookies }) => {
+        const formData = await request.formData();
+        const token = cookies.get('token');
+
+        if (!token) {
+            error(HttpStatus.NotFound);
+        }
+
+        const createPostResult = await createPost(formData, token);
+
+        if (!createPostResult.success) {
+            if (createPostResult.errors?.authError) {
+                return error(HttpStatus.Unauthorized);
+            }
+
+            return fail(HttpStatus.UnprocessableEntity, createPostResult.errors);
+        }
+    }
+};
