@@ -4,4 +4,8 @@
     let { data } = $props();
 </script>
 
+<svelte:head>
+    <title>Ashley Coles</title>
+</svelte:head>
+
 <RecentPosts posts={data.posts} />
