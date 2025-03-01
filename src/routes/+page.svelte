@@ -1,11 +1,7 @@
 <script lang="ts">
-    import PostExcerpt from "$lib/components/PostExcerpt.svelte";
+    import RecentPosts from "$lib/components/RecentPosts.svelte";
 
     let { data } = $props();
 </script>
 
-<ul>    
-{#each data.posts as post}
-    <PostExcerpt {...post} />
-{/each}
-</ul>
+<RecentPosts posts={data.posts} />
