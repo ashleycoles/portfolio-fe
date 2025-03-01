@@ -5,3 +5,7 @@ export interface PostExcerpt {
     featuredImage: string;
     excerpt: string;
 }
+
+export interface Post extends PostExcerpt {
+    content: string;
+}
