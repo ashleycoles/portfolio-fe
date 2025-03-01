@@ -2,4 +2,4 @@
     let { name, required = false } = $props();
 </script>
 
-<textarea class="border-1 border-black rounded-sm" {name} {required}></textarea>
+<textarea class="rounded-sm border-1 border-black" {name} {required}></textarea>

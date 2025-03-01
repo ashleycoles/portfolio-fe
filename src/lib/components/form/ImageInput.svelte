@@ -3,7 +3,7 @@
 </script>
 
 <input
-    class="border-1 border-black rounded-sm"
+    class="rounded-sm border-1 border-black"
     type="file"
     {name}
     {required}

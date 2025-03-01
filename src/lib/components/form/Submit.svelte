@@ -2,4 +2,4 @@
     let { value } = $props();
 </script>
 
-<input class="border-1 border-black rounded-sm" type="submit" {value} />
+<input class="rounded-sm border-1 border-black" type="submit" {value} />

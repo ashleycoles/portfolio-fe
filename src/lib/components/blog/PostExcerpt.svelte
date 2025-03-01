@@ -9,11 +9,11 @@
 </script>
 
 <li>
-    <article class="hover:bg-gray-100 dark:hover:bg-background-dark py-8 transition-colors">
+    <article class="dark:hover:bg-background-dark py-8 transition-colors hover:bg-gray-100">
         <a href="/blog/{slug}">
             <Container>
-                <div class="flex flex-col sm:flex-row-reverse items-start sm:items-center sm:justify-end gap-3 mb-4">
-                    <div class="bg-highlight text-white dark:bg-highlight-dark dark:text-black px-2 py-0.5">
+                <div class="mb-4 flex flex-col items-start gap-3 sm:flex-row-reverse sm:items-center sm:justify-end">
+                    <div class="bg-highlight dark:bg-highlight-dark px-2 py-0.5 text-white dark:text-black">
                         <H3>{title}</H3>
                     </div>
 
