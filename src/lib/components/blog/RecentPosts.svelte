@@ -1,6 +1,6 @@
 <script lang="ts">
     import PostExcerpt from './PostExcerpt.svelte';
-    import H2 from './text/H2.svelte';
+    import H2 from '../text/H2.svelte';
 
     let { posts } = $props();
 </script>

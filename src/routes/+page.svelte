@@ -1,5 +1,5 @@
 <script lang="ts">
-    import RecentPosts from '$lib/components/RecentPosts.svelte';
+    import RecentPosts from '$lib/components/blog/RecentPosts.svelte';
 
     let { data } = $props();
     let { posts } = data;
